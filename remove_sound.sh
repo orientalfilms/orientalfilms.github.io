@@ -18,7 +18,7 @@ for input_folder in "$base_dir"/*/assets; do
             filename=$(basename "$video_file")
             echo "Processing video: $filename"
 
-            # Remove audio and reduce quality to 480p
+            # Remove audio and reduce quality to 720p if needed
             ffmpeg -i "$video_file" -an -vf "scale=-2:720" -c:v libx264 -preset fast -crf 28 "${video_file%.mp4}_720p.mp4"
 
             # Remove all video
