@@ -17,7 +17,7 @@ for input_folder in "$base_dir"/*/assets; do
         num_videos=$(ls -1 "$input_folder"/*.mp4 2>/dev/null | wc -l)
 
         # Determine the resolution based on the number of video files
-        if [ "$num_videos" -gt 1 ]; then
+        if [ "$num_videos" -gt 2 ]; then
             resolution="480"
         else
             resolution="720"
