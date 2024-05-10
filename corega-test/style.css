@@ -1,0 +1,58 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* This ensures no scrolling */
+}
+
+.slider {
+    position: fixed; /* Ensures the slider covers the entire screen */
+    top: 0;
+    left: 0;
+    width: 720px; /* Fixed width */
+    height: 480px; /* Fixed height */
+    overflow: hidden; /* Prevents any internal scroll bars */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* These flex properties center the slides */
+}
+
+.slide {
+    width: 720px; /* Same as the slider's width */
+    height: 480px; /* Same as the slider's height */
+    display: none; /* Only the active slide is shown */
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevents the slide from shrinking */
+}
+
+.slide.active {
+    display: flex; /* Using flex to center content within the slide */
+}
+
+video, img {
+    max-width: 100px; /* Limits the video or image to not exceed the slide's width */
+    max-height: 100px; /* Limits the video or image to not exceed the slide's height */
+    object-fit: contain; /* Ensures the entire video/image is visible and maintains aspect ratio */
+}
+
+button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    outline: none;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
