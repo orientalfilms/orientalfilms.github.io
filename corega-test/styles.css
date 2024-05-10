@@ -1,16 +1,18 @@
-html, body {
-    height: 100%;
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    overflow: hidden; /* This ensures no scrolling */
 }
-
+h1 {
+    font-size: 2em;
+}
 .slider {
     position: fixed; /* Ensures the slider covers the entire screen */
-    top: 0;
-    left: 0;
-    width: 720px; /* Fixed width */
-    height: 480px; /* Fixed height */
     overflow: hidden; /* Prevents any internal scroll bars */
     display: flex;
     justify-content: center;
@@ -18,8 +20,6 @@ html, body {
 }
 
 .slide {
-    width: 720px; /* Same as the slider's width */
-    height: 480px; /* Same as the slider's height */
     display: none; /* Only the active slide is shown */
     align-items: center;
     justify-content: center;
@@ -31,15 +31,13 @@ html, body {
 }
 
 video, img {
-    max-width: 100px; /* Limits the video or image to not exceed the slide's width */
-    max-height: 100px; /* Limits the video or image to not exceed the slide's height */
     object-fit: contain; /* Ensures the entire video/image is visible and maintains aspect ratio */
 }
 
 button {
     position: absolute;
     z-index: 10;
-    top: 50%;
+    top: 95%;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;
@@ -50,9 +48,9 @@ button {
 }
 
 #prev {
-    left: 10px;
+    left: 5px;
 }
 
 #next {
-    right: 10px;
+    right: 5px;
 }

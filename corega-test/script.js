@@ -17,17 +17,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (media.type === 'video') {
             const video = document.createElement('video');
-            video.src = media.src;
-            video.controls = true;
+            video.src = media.src; // Set the source of the video
             video.width = width;  // Set the width of the video
-            // video.height = 720; // Set the height of the video
+            video.loop = true; // Loop the video
+            video.controls = false // Hide the video controls
             slide.appendChild(video);
         } else if (media.type === 'image') {
             const image = document.createElement('img');
             image.src = media.src;
             image.alt = "Presentation Image";
-            image.width =width;  // Set the width of the video
-            //image.height = 720; // Set the height of the video
+            image.width = width;  // Set the width of the video
             slide.appendChild(image);
         }
 
@@ -61,8 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
         showSlide(prevSlide);
     }
 
-    // document.getElementById('next').addEventListener('click', nextSlide);
-    // document.getElementById('prev').addEventListener('click', previousSlide);
+    // Add event listeners to the buttons
+    document.getElementById('next').addEventListener('click', nextSlide);
+    document.getElementById('prev').addEventListener('click', previousSlide);
 
     // Add keyboard navigation
     document.addEventListener('keydown', function(event) {
