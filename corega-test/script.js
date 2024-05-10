@@ -6,6 +6,22 @@ document.addEventListener("DOMContentLoaded", function() {
         { type: 'image', src: 'slides/Slides/Slides.004.png'},
         { type: 'video', src: 'slides/Slide 5.m4v' },
         { type: 'video', src: 'slides/Slide 6.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.007.png'},
+        { type: 'image', src: 'slides/Slides/Slides.008.png'},
+        { type: 'video', src: 'slides/Slide 9.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.010.png'},
+        { type: 'video', src: 'slides/Slide 11.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.012.png'},
+        { type: 'image', src: 'slides/Slides/Slides.013.png'},
+        { type: 'image', src: 'slides/Slides/Slides.014.png'},
+        { type: 'image', src: 'slides/Slides/Slides.015.png'},
+        { type: 'image', src: 'slides/Slides/Slides.016.png'},
+        { type: 'image', src: 'slides/Slides/Slides.017.png'},
+        { type: 'video', src: 'slides/Slide 18.m4v' },
+        { type: 'video', src: 'slides/Slide 19.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.020.png'},
+        { type: 'image', src: 'slides/Slides/Slides.021.png'},
+        { type: 'image', src: 'slides/Slides/Slides.022.png'},
         // Add more media sources as needed
     ];
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -25,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (media.type === 'image') {
             const image = document.createElement('img');
             image.src = media.src;
-            image.alt = "Presentation Image";
+            image.alt = "Image";
             image.width = width;  // Set the width of the video
             slide.appendChild(image);
         }
