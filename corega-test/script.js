@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateSlideNumber(index) {
         const slideNumberElement = document.getElementById('slideNumber');
-        slideNumberElement.textContent = `Slide ${index + 1} of ${slides.length}`;
+        slideNumberElement.textContent = `${index + 1} of ${slides.length}`;
     }    
 
     function showSlide(index) {
