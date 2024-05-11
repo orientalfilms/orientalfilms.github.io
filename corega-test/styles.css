@@ -150,18 +150,18 @@ a {
 }
 
 /* For tablets */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     body {
         font-size: 12px; /* Slightly smaller font size for tablets */
     }
 
     .hud {
-        font-size: 8px;
+        font-size: 10px;
 		width: 25%;
     }
 
 	.slide-number {
-		font-size: 10px;
+		font-size: 12px;
 	}
 }
 
