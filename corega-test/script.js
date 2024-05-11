@@ -49,8 +49,24 @@ document.addEventListener("DOMContentLoaded", function() {
         slider.appendChild(slide);
     });
 
+    updateMediaWidths(); // Call once on load
+    window.addEventListener('resize', updateMediaWidths); // Adjust on window resize
+
+    function updateMediaWidths() {
+        const width = window.innerWidth;
+        const mediaElements = document.querySelectorAll('.slide img, .slide video');
+        mediaElements.forEach(el => {
+            el.style.width = `${width}px`; // Update width to match the window
+        });
+    }
+
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+
+    function updateSlideNumber(index) {
+        const slideNumberElement = document.getElementById('slideNumber');
+        slideNumberElement.textContent = `Slide ${index + 1} of ${slides.length}`;
+    }    
 
     function showSlide(index) {
         slides.forEach((slide, idx) => {
@@ -59,21 +75,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 slides[idx].querySelector('video').pause();
             }
         });
-
+    
         slides[index].style.display = 'block';
         const video = slides[index].querySelector('video');
         if (video) video.play();
         currentSlide = index;
+        updateSlideNumber(index); // Update slide number display
     }
 
     function nextSlide() {
-        const nextSlide = (currentSlide + 1) % slides.length;
-        showSlide(nextSlide);
+        if (currentSlide < slides.length - 1) { // Check if not the last slide
+            showSlide(currentSlide + 1);
+        }
     }
 
     function previousSlide() {
-        const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(prevSlide);
+        if (currentSlide > 0) { // Check if not the first slide
+            showSlide(currentSlide - 1);
+        }
     }
 
     // Add event listeners to the buttons

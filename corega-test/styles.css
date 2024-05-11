@@ -1,7 +1,7 @@
 body {
     background-color: black;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,10 +47,103 @@ button {
     outline: none;
 }
 
-#prev {
-    left: 5px;
+/* #prev {
+    left: 10px;
 }
 
 #next {
-    right: 5px;
+    right: 10px;
+} */
+
+/* HUD */
+.hud {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	top: 95%;
+	width: 15%;
+	box-sizing: border-box;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.slide-number {
+    display: inline-block;
+    margin: 0 20px;
+    color: white; /* Example color */
+    font-size: 20px; /* Example font size */
+	font-family: 'Helvetica', 'Arial', sans-serif; /* Specify Helvetica here */
+}
+
+/* Arrows for navigation */
+.arrow {
+	--arrow-size: 1.5em;
+	--arrow-color: rgb(255,255,255);
+	--arrow-color-hover: rgb(218,191,216);
+	position: relative;
+	display: inline-flex;
+	vertical-align: middle;
+	width: var(--arrow-size);
+	height: var(--arrow-size);
+	overflow: hidden;
+	
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		box-sizing: border-box;
+		display: inline-block;
+		width: calc( var(--arrow-size) * .7071);
+		height: calc( var(--arrow-size) * .7071);
+		border-top: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+		transition: all 150ms ease-in-out;
+	}
+	
+	&.left {
+		&::after {
+			left: calc( var(--arrow-size) / 5 );
+			border-left: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+			transform-origin: top left;
+			rotate: -45deg;
+		}
+
+		&:hover::after {
+			box-shadow: calc( var(--arrow-size) / -8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+		}
+	}
+
+	&.right {
+		&::after {
+			right: calc( var(--arrow-size) / 5 );
+			border-right: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+			transform-origin: top right;
+			rotate: 45deg;
+		}
+
+		&:hover::after {
+			box-shadow: calc( var(--arrow-size) / 8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+		}
+	}
+}
+
+a {
+	&:hover .arrow {
+		&.left,
+		&.right {
+			&::after {
+				border-color: var(--arrow-color-hover);
+			}
+		}
+
+		&.left {
+			&::after {
+				box-shadow: calc( var(--arrow-size) / -8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+			}
+		}
+
+		&.right {
+			&::after {
+				box-shadow: calc( var(--arrow-size) / 8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+			}
+		}
+	}
 }
