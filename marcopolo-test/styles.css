@@ -62,7 +62,7 @@ button {
 	display: flex;
 	justify-content: space-between;
 	top: 95%;
-	width: 15%;
+	width: 25%;
 	box-sizing: border-box;
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
