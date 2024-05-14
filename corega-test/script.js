@@ -95,6 +95,41 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    // Hide HUD
+    const hud = document.querySelector('.hud');
+
+    function hideHUD() {
+        hud.style.opacity = '0';
+    }
+
+    function showHUD() {
+        hud.style.opacity = '1';
+    }
+
+    function startHUD() {
+        setTimeout(hideHUD, 2000);
+    }
+
+    // Add event listeners to show and hide HUD
+    startHUD();
+
+    hud.addEventListener('mouseenter', showHUD);
+    hud.addEventListener('mouseleave', hideHUD);
+
+    // Function to show HUD and then hide after 1 seconds
+    function handleHudClick() {
+        showHUD();
+        setTimeout(hideHUD, 1000); 
+    }
+
+    // Add click event on the slider to handle HUD visibility
+    slider.addEventListener('click', handleHudClick);
+
+    // Add arrow key event on the slider to handle HUD visibility
+    document.addEventListener('keydown', function(event) {
+        handleHudClick();
+    });
+
     // Add event listeners to the buttons
     document.getElementById('next').addEventListener('click', nextSlide);
     document.getElementById('prev').addEventListener('click', previousSlide);

@@ -62,9 +62,11 @@ button {
 	display: flex;
 	justify-content: space-between;
 	top: 95%;
-	width: 25%;
+	width: 15%;
 	box-sizing: border-box;
 	font-family: 'Helvetica', 'Arial', sans-serif;
+	opacity: 1; /* Make HUD invisible by default */
+    transition: opacity 0.8s ease-in-out; /* Fade in/out effect */
 }
 
 .slide-number {

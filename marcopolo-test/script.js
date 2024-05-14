@@ -1,29 +1,27 @@
 document.addEventListener("DOMContentLoaded", function() {
     const mediaSources = [
-        { type: 'video', src: 'slides/Slide 1.m4v' },
-        { type: 'video', src: 'slides/Slide 2.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.001.png'},
+        { type: 'image', src: 'slides/Slides/Slides.002.png'},
         { type: 'image', src: 'slides/Slides/Slides.003.png'},
-        { type: 'video', src: 'slides/Slide 4.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.004.png'},
+        { type: 'video', src: 'slides/Slide 5.m4v' },
         { type: 'video', src: 'slides/Slide 6.m4v' },
-        { type: 'video', src: 'slides/Slide 7.m4v' },
-        { type: 'video', src: 'slides/Slide 8.m4v' },
-        { type: 'image', src: 'slides/Slides/Slides.009.png'},
+        { type: 'image', src: 'slides/Slides/Slides.007.png'},
+        { type: 'image', src: 'slides/Slides/Slides.008.png'},
+        { type: 'video', src: 'slides/Slide 9.m4v' },
         { type: 'image', src: 'slides/Slides/Slides.010.png'},
-        { type: 'image', src: 'slides/Slides/Slides.011.png'},
+        { type: 'video', src: 'slides/Slide 11.m4v' },
         { type: 'image', src: 'slides/Slides/Slides.012.png'},
         { type: 'image', src: 'slides/Slides/Slides.013.png'},
-        { type: 'video', src: 'slides/Slide 14.m4v' },
-        { type: 'video', src: 'slides/Slide 15.m4v' },
-        { type: 'video', src: 'slides/Slide 16.m4v' },
-        { type: 'video', src: 'slides/Slide 17.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.014.png'},
+        { type: 'image', src: 'slides/Slides/Slides.015.png'},
+        { type: 'image', src: 'slides/Slides/Slides.016.png'},
+        { type: 'image', src: 'slides/Slides/Slides.017.png'},
         { type: 'video', src: 'slides/Slide 18.m4v' },
         { type: 'video', src: 'slides/Slide 19.m4v' },
-        { type: 'video', src: 'slides/Slide 20.m4v' },
-        { type: 'video', src: 'slides/Slide 22.m4v' },
-        { type: 'video', src: 'slides/Slide 23.m4v' },
-        { type: 'video', src: 'slides/Slide 24.m4v' },
-        { type: 'video', src: 'slides/Slide 30.m4v' },
-        { type: 'video', src: 'slides/Slide 31.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.020.png'},
+        { type: 'image', src: 'slides/Slides/Slides.021.png'},
+        { type: 'image', src: 'slides/Slides/Slides.022.png'},
         // Add more media sources as needed
     ];
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -96,6 +94,41 @@ document.addEventListener("DOMContentLoaded", function() {
             showSlide(currentSlide - 1);
         }
     }
+
+    // Hide HUD
+    const hud = document.querySelector('.hud');
+
+    function hideHUD() {
+        hud.style.opacity = '0';
+    }
+
+    function showHUD() {
+        hud.style.opacity = '1';
+    }
+
+    function startHUD() {
+        setTimeout(hideHUD, 2000);
+    }
+
+    // Add event listeners to show and hide HUD
+    startHUD();
+
+    hud.addEventListener('mouseenter', showHUD);
+    hud.addEventListener('mouseleave', hideHUD);
+
+    // Function to show HUD and then hide after 1 seconds
+    function handleHudClick() {
+        showHUD();
+        setTimeout(hideHUD, 1000); 
+    }
+
+    // Add click event on the slider to handle HUD visibility
+    slider.addEventListener('click', handleHudClick);
+
+    // Add arrow key event on the slider to handle HUD visibility
+    document.addEventListener('keydown', function(event) {
+        handleHudClick();
+    });
 
     // Add event listeners to the buttons
     document.getElementById('next').addEventListener('click', nextSlide);
