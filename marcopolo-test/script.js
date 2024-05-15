@@ -1,27 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
     const mediaSources = [
-        { type: 'image', src: 'slides/Slides/Slides.001.png'},
-        { type: 'image', src: 'slides/Slides/Slides.002.png'},
+        { type: 'video', src: 'slides/Slide 1.m4v' },
+        { type: 'video', src: 'slides/Slide 2.m4v' },
         { type: 'image', src: 'slides/Slides/Slides.003.png'},
-        { type: 'image', src: 'slides/Slides/Slides.004.png'},
-        { type: 'video', src: 'slides/Slide 5.m4v' },
+        { type: 'video', src: 'slides/Slide 4.m4v' },
+        // { type: 'image', src: 'slides/Slides/Slides.005.png'},
         { type: 'video', src: 'slides/Slide 6.m4v' },
-        { type: 'image', src: 'slides/Slides/Slides.007.png'},
-        { type: 'image', src: 'slides/Slides/Slides.008.png'},
-        { type: 'video', src: 'slides/Slide 9.m4v' },
+        { type: 'video', src: 'slides/Slide 7.m4v' },
+        { type: 'video', src: 'slides/Slide 8.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.009.png'},
         { type: 'image', src: 'slides/Slides/Slides.010.png'},
-        { type: 'video', src: 'slides/Slide 11.m4v' },
+        { type: 'image', src: 'slides/Slides/Slides.011.png'},
         { type: 'image', src: 'slides/Slides/Slides.012.png'},
         { type: 'image', src: 'slides/Slides/Slides.013.png'},
-        { type: 'image', src: 'slides/Slides/Slides.014.png'},
-        { type: 'image', src: 'slides/Slides/Slides.015.png'},
-        { type: 'image', src: 'slides/Slides/Slides.016.png'},
-        { type: 'image', src: 'slides/Slides/Slides.017.png'},
+        { type: 'video', src: 'slides/Slide 14.m4v' },
+        { type: 'video', src: 'slides/Slide 15.m4v' },
+        { type: 'video', src: 'slides/Slide 16.m4v' },
+        { type: 'video', src: 'slides/Slide 17.m4v' },
         { type: 'video', src: 'slides/Slide 18.m4v' },
         { type: 'video', src: 'slides/Slide 19.m4v' },
-        { type: 'image', src: 'slides/Slides/Slides.020.png'},
-        { type: 'image', src: 'slides/Slides/Slides.021.png'},
-        { type: 'image', src: 'slides/Slides/Slides.022.png'},
+        { type: 'video', src: 'slides/Slide 20.m4v' },
+        // { type: 'image', src: 'slides/Slides/Slides.021.png'},
+        { type: 'video', src: 'slides/Slide 22.m4v' },
+        { type: 'video', src: 'slides/Slide 23.m4v' },
+        { type: 'video', src: 'slides/Slide 24.m4v' },
+        // { type: 'image', src: 'slides/Slides/Slides.025.png'},
+        // { type: 'image', src: 'slides/Slides/Slides.026.png'},
+        // { type: 'image', src: 'slides/Slides/Slides.027.png'},
+        // { type: 'image', src: 'slides/Slides/Slides.028.png'},
+        // { type: 'image', src: 'slides/Slides/Slides.029.png'},
+        { type: 'video', src: 'slides/Slide 30.m4v' },
+        { type: 'video', src: 'slides/Slide 31.m4v' },
         // Add more media sources as needed
     ];
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -73,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
             slide.style.display = 'none';
             if (slides[idx].querySelector('video')) {
                 slides[idx].querySelector('video').pause();
+                slides[idx].querySelector('video').currentTime = 0;
             }
         });
     
@@ -80,7 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const video = slides[index].querySelector('video');
         if (video) video.play();
         currentSlide = index;
-        updateSlideNumber(index); // Update slide number display
+        updateSlideNumber(index); 
+
+        showHUD(); 
+        setTimeout(hideHUD, 2000); 
     }
 
     function nextSlide() {
@@ -116,19 +129,14 @@ document.addEventListener("DOMContentLoaded", function() {
     hud.addEventListener('mouseenter', showHUD);
     hud.addEventListener('mouseleave', hideHUD);
 
-    // Function to show HUD and then hide after 1 seconds
+    // Function to show HUD and then hide after 3 seconds
     function handleHudClick() {
         showHUD();
-        setTimeout(hideHUD, 1000); 
+        setTimeout(hideHUD, 2000); 
     }
 
     // Add click event on the slider to handle HUD visibility
     slider.addEventListener('click', handleHudClick);
-
-    // Add arrow key event on the slider to handle HUD visibility
-    document.addEventListener('keydown', function(event) {
-        handleHudClick();
-    });
 
     // Add event listeners to the buttons
     document.getElementById('next').addEventListener('click', nextSlide);
@@ -143,6 +151,42 @@ document.addEventListener("DOMContentLoaded", function() {
             previousSlide();
         }
     });
+
+    // Add swipe navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartTime = 0;
+
+    function handleTouchStart(event) {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartTime = new Date().getTime();
+    }
+
+    function handleTouchMove(event) {
+        touchEndX = event.changedTouches[0].screenX;
+    }
+
+    // Define a minimum swipe distance (in pixels) for swipe actions to be considered valid
+    const swipeThreshold = 50; // you can adjust this value based on your needs
+    const timeThreshold = 500; // maximum time allowed to swipe
+
+    function handleTouchEnd() {
+        const swipeDistance = Math.abs(touchEndX - touchStartX);
+        const touchEndTime = new Date().getTime(); // record the time when the touch ends
+        const swipeDuration = touchEndTime - touchStartTime; // calculate the duration of the swipe
+
+        if (swipeDistance > swipeThreshold && swipeDuration < timeThreshold) { // Only consider a swipe if it exceeds the threshold
+            if (touchEndX < touchStartX) {
+                nextSlide();  // Swiping left to go to the next slide
+            } else if (touchEndX > touchStartX) {
+                previousSlide();  // Swiping right to go to the previous slide
+            }
+        }
+    }
+
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
 
     // Initialize the first slide
     showSlide(0);
