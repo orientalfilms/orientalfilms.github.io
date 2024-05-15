@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
             slide.style.display = 'none';
             if (slides[idx].querySelector('video')) {
                 slides[idx].querySelector('video').pause();
+                slides[idx].querySelector('video').currentTime = 0;
             }
         });
     
@@ -80,7 +81,10 @@ document.addEventListener("DOMContentLoaded", function() {
         const video = slides[index].querySelector('video');
         if (video) video.play();
         currentSlide = index;
-        updateSlideNumber(index); // Update slide number display
+        updateSlideNumber(index); 
+
+        showHUD(); 
+        setTimeout(hideHUD, 2000); 
     }
 
     function nextSlide() {
@@ -125,11 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add click event on the slider to handle HUD visibility
     slider.addEventListener('click', handleHudClick);
 
-    // Add arrow key event on the slider to handle HUD visibility
-    document.addEventListener('keydown', function(event) {
-        handleHudClick();
-    });
-
     // Add event listeners to the buttons
     document.getElementById('next').addEventListener('click', nextSlide);
     document.getElementById('prev').addEventListener('click', previousSlide);
@@ -143,6 +142,31 @@ document.addEventListener("DOMContentLoaded", function() {
             previousSlide();
         }
     });
+
+    // Add swipe navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function handleTouchStart(event) {
+        touchStartX = event.changedTouches[0].screenX;
+    }
+
+    function handleTouchMove(event) {
+        touchEndX = event.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd() {
+        if (touchEndX < touchStartX) {
+            nextSlide();  // Swiping left to go to the next slide
+        }
+        if (touchEndX > touchStartX) {
+            previousSlide();  // Swiping right to go to the previous slide
+        }
+    }
+
+    slider.addEventListener('touchstart', handleTouchStart);
+    slider.addEventListener('touchmove', handleTouchMove);
+    slider.addEventListener('touchend', handleTouchEnd);
 
     // Initialize the first slide
     showSlide(0);
