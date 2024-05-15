@@ -146,9 +146,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add swipe navigation
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartTime = 0;
 
     function handleTouchStart(event) {
         touchStartX = event.changedTouches[0].screenX;
+        touchStartTime = new Date().getTime();
     }
 
     function handleTouchMove(event) {
@@ -157,10 +159,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Define a minimum swipe distance (in pixels) for swipe actions to be considered valid
     const swipeThreshold = 50; // you can adjust this value based on your needs
+    const timeThreshold = 500; // maximum time allowed to swipe
 
     function handleTouchEnd() {
         const swipeDistance = Math.abs(touchEndX - touchStartX);
-        if (swipeDistance > swipeThreshold) { // Only consider a swipe if it exceeds the threshold
+        const touchEndTime = new Date().getTime(); // record the time when the touch ends
+        const swipeDuration = touchEndTime - touchStartTime; // calculate the duration of the swipe
+
+        if (swipeDistance > swipeThreshold && swipeDuration < timeThreshold) { // Only consider a swipe if it exceeds the threshold
             if (touchEndX < touchStartX) {
                 nextSlide();  // Swiping left to go to the next slide
             } else if (touchEndX > touchStartX) {
