@@ -88,7 +88,14 @@ document.addEventListener("DOMContentLoaded", function() {
     
         slides[index].style.display = 'block';
         const video = slides[index].querySelector('video');
+        // Play the video if it exists
         if (video) video.play();
+
+        // For the first video, we need to mute it to ensure autoplay is possible
+        if (video && index === 0) {
+            video.muted = true;
+            video.play();
+        }
         currentSlide = index;
         updateSlideNumber(index); 
 
