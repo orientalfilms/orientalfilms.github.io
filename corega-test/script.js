@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", function() {
     hud.addEventListener('mouseenter', showHUD);
     hud.addEventListener('mouseleave', hideHUD);
 
-    // Function to show HUD and then hide after 1 seconds
+    // Function to show HUD and then hide after 3 seconds
     function handleHudClick() {
         showHUD();
-        setTimeout(hideHUD, 1000); 
+        setTimeout(hideHUD, 2000); 
     }
 
     // Add click event on the slider to handle HUD visibility
@@ -155,12 +155,17 @@ document.addEventListener("DOMContentLoaded", function() {
         touchEndX = event.changedTouches[0].screenX;
     }
 
+    // Define a minimum swipe distance (in pixels) for swipe actions to be considered valid
+    const swipeThreshold = 50; // you can adjust this value based on your needs
+
     function handleTouchEnd() {
-        if (touchEndX < touchStartX) {
-            nextSlide();  // Swiping left to go to the next slide
-        }
-        if (touchEndX > touchStartX) {
-            previousSlide();  // Swiping right to go to the previous slide
+        const swipeDistance = Math.abs(touchEndX - touchStartX);
+        if (swipeDistance > swipeThreshold) { // Only consider a swipe if it exceeds the threshold
+            if (touchEndX < touchStartX) {
+                nextSlide();  // Swiping left to go to the next slide
+            } else if (touchEndX > touchStartX) {
+                previousSlide();  // Swiping right to go to the previous slide
+            }
         }
     }
 
