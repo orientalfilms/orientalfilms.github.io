@@ -1,25 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
     const mediaSources = [
-        { type: 'video', src: 'slides/Slide 1.m4v' },
-        { type: 'image', src: 'slides/Slides/Slides.002.png'},
-        { type: 'video', src: 'slides/Slide 2.mp4' },
-        { type: 'image', src: 'slides/Slides/Slides.003.png'},
-        { type: 'video', src: 'slides/Slide 3.mp4' },
+        { type: 'video', src: 'slides/Slide 1_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 2_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 3_compressed.mp4'},
         { type: 'image', src: 'slides/Slides/Slides.004.png'},
-        { type: 'video', src: 'slides/Slide 5.m4v' },
-        { type: 'video', src: 'slides/Slide 6.m4v' },
-        { type: 'video', src: 'slides/Slide 7.m4v' },
-        { type: 'video', src: 'slides/Slide 8.m4v' },
-        { type: 'video', src: 'slides/Slide 9.m4v' },
-        { type: 'video', src: 'slides/Slide 10.m4v' },
-        { type: 'video', src: 'slides/Slide 11.m4v' },
-        { type: 'video', src: 'slides/Slide 12.m4v' },
+        { type: 'video', src: 'slides/Slide 5_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 6_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 7_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 8_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 9_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 10_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 11_compressed.mp4'},
+        { type: 'video', src: 'slides/Slide 12_compressed.mp4'},
         { type: 'image', src: 'slides/Slides/Slides.013.png'},
         { type: 'image', src: 'slides/Slides/Slides.014.png'},
         { type: 'image', src: 'slides/Slides/Slides.015.png'},
         { type: 'image', src: 'slides/Slides/Slides.016.png'},
-        { type: 'video', src: 'slides/Slide 17.m4v' },
-        // Add more media sources as needed
+        { type: 'video', src: 'slides/Slide 17_compressed.mp4'}
     ];
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const slider = document.getElementById('mediaSlider');
@@ -84,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             video.muted = true;
             video.play();
         }
+        
         currentSlide = index;
         updateSlideNumber(index); 
 
