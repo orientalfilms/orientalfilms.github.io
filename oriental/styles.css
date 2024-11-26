@@ -1,51 +1,65 @@
 body {
-    background-color: black;
-    color: white;
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	background-color: black;
+	color: white;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-size: 16px;
-    height: 100vh;
-    margin: 0;
+	height: 100vh;
+	margin: 0;
 }
+
 h1 {
-    font-size: 2em;
+	font-size: 2em;
 }
+
 .slider {
-    position: fixed; /* Ensures the slider covers the entire screen */
-    overflow: hidden; /* Prevents any internal scroll bars */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* These flex properties center the slides */
+	position: fixed;
+	/* Ensures the slider covers the entire screen */
+	overflow: hidden;
+	/* Prevents any internal scroll bars */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* These flex properties center the slides */
 }
 
 .slide {
-    display: none; /* Only the active slide is shown */
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0; /* Prevents the slide from shrinking */
+	display: none;
+	/* Only the active slide is shown */
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	/* Prevents the slide from shrinking */
 }
 
 .slide.active {
-    display: flex; /* Using flex to center content within the slide */
+	display: flex;
+	/* Using flex to center content within the slide */
 }
 
-video, img {
-    object-fit: contain; /* Ensures the entire video/image is visible and maintains aspect ratio */
+video,
+img {
+	object-fit: contain;
+	/* Ensures the entire video/image is visible and maintains aspect ratio */
+	height: 100vh;
+	/* Adjusts the video to the height of the screen */
+	width: auto;
+	/* Keeps the width proportional to the height */
 }
 
 button {
-    position: absolute;
-    z-index: 10;
-    top: 95%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
-    outline: none;
+	position: absolute;
+	z-index: 10;
+	top: 95%;
+	transform: translateY(-50%);
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 2rem;
+	color: white;
+	outline: none;
 }
 
 /* #prev {
@@ -65,74 +79,82 @@ button {
 	width: 15%;
 	box-sizing: border-box;
 	font-family: 'Helvetica', 'Arial', sans-serif;
-	background-color: rgba(0, 0, 0, 0.3); /* Grey background with 50% opacity */
-	border-radius: 10px; /* Rounded corners */
-	padding: 5px; 
-	opacity: 1; /* Make HUD invisible by default */
-    transition: opacity 2s ease-in-out; /* Fade in/out effect */
+	background-color: rgba(0, 0, 0, 0.3);
+	/* Grey background with 50% opacity */
+	border-radius: 10px;
+	/* Rounded corners */
+	padding: 5px;
+	opacity: 1;
+	/* Make HUD invisible by default */
+	transition: opacity 2s ease-in-out;
+	/* Fade in/out effect */
 }
 
 .slide-number {
-    display: inline-block;
-    margin: 0 20px;
-    color: white; /* Example color */
-    font-size: 20px; /* Example font size */
-	font-family: 'Helvetica', 'Arial', sans-serif; /* Specify Helvetica here */
+	display: inline-block;
+	margin: 0 20px;
+	color: white;
+	/* Example color */
+	font-size: 20px;
+	/* Example font size */
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	/* Specify Helvetica here */
 }
 
 /* Arrows for navigation */
 .arrow {
 	--arrow-size: 1.5em;
-	--arrow-color: rgb(255,255,255);
-	--arrow-color-hover: rgb(218,191,216);
+	--arrow-color: rgb(255, 255, 255);
+	--arrow-color-hover: rgb(218, 191, 216);
 	position: relative;
 	display: inline-flex;
 	vertical-align: middle;
 	width: var(--arrow-size);
 	height: var(--arrow-size);
 	overflow: hidden;
-	
+
 	&::after {
 		content: '';
 		position: absolute;
 		top: 50%;
 		box-sizing: border-box;
 		display: inline-block;
-		width: calc( var(--arrow-size) * .7071);
-		height: calc( var(--arrow-size) * .7071);
-		border-top: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+		width: calc(var(--arrow-size) * .7071);
+		height: calc(var(--arrow-size) * .7071);
+		border-top: calc(var(--arrow-size) / 5) solid var(--arrow-color);
 		transition: all 150ms ease-in-out;
 	}
-	
+
 	&.left {
 		&::after {
-			left: calc( var(--arrow-size) / 5 );
-			border-left: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+			left: calc(var(--arrow-size) / 5);
+			border-left: calc(var(--arrow-size) / 5) solid var(--arrow-color);
 			transform-origin: top left;
 			rotate: -45deg;
 		}
 
 		&:hover::after {
-			box-shadow: calc( var(--arrow-size) / -8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+			box-shadow: calc(var(--arrow-size) / -8) calc(var(--arrow-size) / -8) 0 var(--arrow-color);
 		}
 	}
 
 	&.right {
 		&::after {
-			right: calc( var(--arrow-size) / 5 );
-			border-right: calc( var(--arrow-size) / 5 ) solid var(--arrow-color);
+			right: calc(var(--arrow-size) / 5);
+			border-right: calc(var(--arrow-size) / 5) solid var(--arrow-color);
 			transform-origin: top right;
 			rotate: 45deg;
 		}
 
 		&:hover::after {
-			box-shadow: calc( var(--arrow-size) / 8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+			box-shadow: calc(var(--arrow-size) / 8) calc(var(--arrow-size) / -8) 0 var(--arrow-color);
 		}
 	}
 }
 
 a {
 	&:hover .arrow {
+
 		&.left,
 		&.right {
 			&::after {
@@ -142,13 +164,13 @@ a {
 
 		&.left {
 			&::after {
-				box-shadow: calc( var(--arrow-size) / -8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+				box-shadow: calc(var(--arrow-size) / -8) calc(var(--arrow-size) / -8) 0 var(--arrow-color);
 			}
 		}
 
 		&.right {
 			&::after {
-				box-shadow: calc( var(--arrow-size) / 8 ) calc( var(--arrow-size) / -8 ) 0 var(--arrow-color);
+				box-shadow: calc(var(--arrow-size) / 8) calc(var(--arrow-size) / -8) 0 var(--arrow-color);
 			}
 		}
 	}
@@ -156,14 +178,15 @@ a {
 
 /* For tablets */
 @media (max-width: 1024px) {
-    body {
-        font-size: 12px; /* Slightly smaller font size for tablets */
-    }
+	body {
+		font-size: 12px;
+		/* Slightly smaller font size for tablets */
+	}
 
-    .hud {
-        font-size: 10px;
+	.hud {
+		font-size: 10px;
 		width: 25%;
-    }
+	}
 
 	.slide-number {
 		font-size: 12px;
@@ -172,14 +195,15 @@ a {
 
 /* For phones */
 @media (max-width: 480px) {
-    body {
-        font-size: 12px; /* Even smaller font size for phones */
-    }
+	body {
+		font-size: 12px;
+		/* Even smaller font size for phones */
+	}
 
-    .hud {
-        font-size: 8px;
+	.hud {
+		font-size: 8px;
 		width: 35%;
-    }
+	}
 
 	.slide-number {
 		font-size: 10px;
